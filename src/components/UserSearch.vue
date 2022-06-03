@@ -7,9 +7,9 @@ export default {
   data() {
     return {
       hasSearched: false,
-      user: "", // Placeholder while I configure backend
-      followers: "", // Placeholder while I configure backend
       formInput: "",
+      user: "", // Placeholder while I configure backend
+      followers: 0, // Placeholder while I configure backend
       twitchChannel: `https://www.twitch.tv/${this.user}`,
     };
   },
@@ -65,36 +65,21 @@ export default {
       <button type="submit" class="submit w-button">Submit</button>
       <hr />
       <div class="results" v-if="hasSearched">
-        <h3>
+        <p class="channel">
           Twitch channel:
           <a :href="twitchChannel" target="_blank" rel="noreferrer noopener">
             {{ user }}
           </a>
-        </h3>
-        <h3>
-          Follower count: <span>{{ Number(followers).toLocaleString() }}</span>
-        </h3>
+        </p>
+        <p class="followers">
+          Follower count: <span>{{ followers.toLocaleString() }}</span>
+        </p>
       </div>
     </form>
   </section>
 </template>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(14, 16, 23);
-  color: rgb(232, 230, 227);
-}
-
 a {
   text-decoration: none;
   color: rgb(255, 111, 89);
@@ -118,10 +103,9 @@ input,
   background-color: transparent;
 }
 
-input {
-  margin-right: 7px;
-  width: 445px;
-  padding: 12px 24px;
+input[type="text"] {
+  width: 420px;
+  padding-left: 20px;
 }
 
 hr {
@@ -161,18 +145,20 @@ hr {
 }
 
 .results {
+  display: flex;
+  justify-content: space-evenly;
   margin-top: 14px;
   font-size: 16px;
-  padding: 11px 24px;
+  padding: 10px 24px;
   width: auto;
 }
 
 .channel {
-  margin-right: 7px;
+  margin-right: 15px;
 }
 
 .followers {
-  margin-left: 7px;
+  margin-left: 15px;
 }
 
 .results span {
