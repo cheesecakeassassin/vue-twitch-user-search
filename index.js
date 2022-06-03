@@ -1,8 +1,9 @@
-require('dotenv').config(); // Safeguarding private keys in .env file
-const express = require('express'); // Web server
-const path = require('path'); // Allows easy modifications to path
-const axios = require('axios'); // HTTP requests
-const Redis = require('redis'); // In-memory caching db
+/* eslint-disable */
+require("dotenv").config(); // Safeguarding private keys in .env file
+const express = require("express"); // Web server
+const path = require("path"); // Allows easy modifications to path
+const axios = require("axios"); // HTTP requests
+const Redis = require("redis"); // In-memory caching db
 
 // Declaring port for server to be hosted on
 const PORT = process.env.PORT || 3001;
@@ -14,27 +15,27 @@ app.use(express.json());
 // Redis client used to quickly cache using RAM
 let redisClient;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // For Heroku deployment
   redisClient = Redis.createClient({ url: process.env.REDIS_URL });
   // Build to use for Heroku deployment
-  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 } else {
   // For local usage
   redisClient = Redis.createClient();
 }
 // Printing status updates for Redis
-redisClient.on('error', (err) => console.error('Redis error...', err));
-redisClient.on('connect', () => console.log('Redis is connected...'));
-redisClient.on('reconnecting', () => console.log('Redis is reconnecting...'));
-redisClient.on('ready', () => console.log('Redis is ready...'));
+redisClient.on("error", (err) => console.error("Redis error...", err));
+redisClient.on("connect", () => console.log("Redis is connected..."));
+redisClient.on("reconnecting", () => console.log("Redis is reconnecting..."));
+redisClient.on("ready", () => console.log("Redis is ready..."));
 
 // Connects client to redis-server
 redisClient.connect();
 
 const DEFAULT_EXPIRATION = 300; // Default lifetime for cached items (5 minutes)
-const DEFAULT_USERNAME = 'cheesecake_assassin'; // Default username if invalid name is given
-const DEFAULT_FOLLOWERS = '2'; // Default followers if invalid name is given
+const DEFAULT_USERNAME = "cheesecake_assassin"; // Default username if invalid name is given
+const DEFAULT_FOLLOWERS = "2"; // Default followers if invalid name is given
 
 /**
  * Facilitates making user requests to the Twitch API
@@ -45,7 +46,7 @@ const twitchUserRequest = async (url) => {
   const data = await axios.get(url, {
     headers: {
       // Used for OAuth authorization that Twitch API requires
-      'Client-Id': `${process.env.CLIENT_ID}`,
+      "Client-Id": `${process.env.CLIENT_ID}`,
       Authorization: `Bearer ${process.env.AUTHORIZATION}`,
     },
   });
@@ -59,7 +60,7 @@ const twitchUserRequest = async (url) => {
 };
 
 // Endpoint that gets user name and follower count and caches them for 5 minutes
-app.get('/users/:username', async (req, res) => {
+app.get("/users/:username", async (req, res) => {
   // Username is set to lowercase to prevent multiple caches for the same name
   let username = req.params.username.toLowerCase();
 
@@ -90,7 +91,7 @@ app.get('/users/:username', async (req, res) => {
 
         // Returns my channel information after caching
         return res.status(200).json({
-          cacheStatus: 'Success!',
+          cacheStatus: "Success!",
           user: username,
           followers: DEFAULT_FOLLOWERS,
         });
@@ -119,7 +120,7 @@ app.get('/users/:username', async (req, res) => {
     redisClient.setEx(username, DEFAULT_EXPIRATION, JSON.stringify(followers));
     // API response once data is cached
     res.status(200).json({
-      cacheStatus: 'Success!',
+      cacheStatus: "Success!",
       user: userData.display_name,
       followers: followers,
     });
@@ -127,8 +128,8 @@ app.get('/users/:username', async (req, res) => {
 });
 
 // Redirects all random endpoints to the homepage
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 // Runs Express server
