@@ -127,9 +127,9 @@ app.get("/users/:username", async (req, res) => {
   }
 });
 
-// Redirects all random endpoints to the homepage
+// Redirects endpoints to the homepage
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 // Runs Express server
