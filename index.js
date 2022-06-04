@@ -75,6 +75,7 @@ app.get('/users/:username', async (request, response) => {
       followers: JSON.parse(cachedUserData),
       cache_expiration: await redisClient.ttl(username),
     });
+    
   } else {
     // Fetch data from API if user is not in cache
     const userData = await twitchUserRequest(`?login=${username}`);
