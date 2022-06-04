@@ -1,7 +1,7 @@
 /* eslint-disable */
 require('dotenv').config(); // Safeguarding private keys in .env file
 const express = require('express'); // Web server
-const cors = require('cors');
+const cors = require('cors'); // Allows cross-port API requests
 const path = require('path'); // Allows easy modifications to path
 const axios = require('axios'); // HTTP requests
 const Redis = require('redis'); // In-memory caching db
@@ -75,7 +75,7 @@ app.get('/users/:username', async (request, response) => {
       followers: JSON.parse(cachedUserData),
       cache_expiration: await redisClient.ttl(username),
     });
-    
+
   } else {
     // Fetch data from API if user is not in cache
     const userData = await twitchUserRequest(`?login=${username}`);
