@@ -2,7 +2,7 @@
 require("dotenv").config(); // Safeguarding private keys in .env file
 const express = require("express"); // Web server
 const cors = require('cors');
-const path = require("path"); // Allows easy modifications to path
+const path = require('path'); // Allows easy modifications to path
 const axios = require("axios"); // HTTP requests
 const Redis = require("redis"); // In-memory caching db
 
@@ -129,7 +129,7 @@ app.get("/users/:username", async (req, res) => {
   }
 });
 
-// Redirects endpoints to the homepage
+// // Redirects endpoints to the homepage
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/index.html"));
 });

@@ -13,7 +13,7 @@
         "
         placeholder="Enter your favorite Twitch channel..."
         autoComplete="off"
-        pattern="^[a-zA-Z0-9_]{4,25}$"
+        pattern="^[a-zA-Z0-9_]{3,25}$"
       />
       <button
         type="submit"
