@@ -48,4 +48,4 @@ A single page application that uses the Twitch API to search Twitch channels, re
 
 Check out the ReactJS version at https://github.com/cheesecakeassassin/twitch-user-search
 
-Send me an email for any questions about this project @ santasebastian@yahoo.com!
+Send me an email for any questions about this project at santasebastian@yahoo.com!
