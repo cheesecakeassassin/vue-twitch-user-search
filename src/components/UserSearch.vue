@@ -30,7 +30,7 @@
           Twitch channel:
           <a
             class="text-orange-500"
-            :href="twitchChannel + user"
+            :href="twitchAddress + user"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -57,7 +57,7 @@ export default {
       formInput: "",
       user: "",
       followers: 0,
-      twitchChannel: "https://www.twitch.tv/",
+      twitchAddress: "https://www.twitch.tv/",
     };
   },
 
