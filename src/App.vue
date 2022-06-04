@@ -34,26 +34,4 @@ import UserSearch from "@/components/UserSearch.vue";
 
 <style>
 @import "@/assets/base.css";
-/* 
-p {
-  text-align: center;
-} */
-
-/* a {
-  text-decoration: none;
-  color: rgb(255, 111, 89);
-  transition: 0.4s;
-} */
-
-/* @media (hover: hover) {
-  a:hover {
-    background-color: rgba(255, 111, 89, 0.2);
-  }
-}
-
-.title {
-  font-size: 54px;
-  text-align: center;
-  margin-top: 50px;
-} */
 </style>
