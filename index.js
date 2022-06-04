@@ -117,7 +117,7 @@ app.get('/users/:username', async (request, response) => {
     redisClient.setEx(username, DEFAULT_EXPIRATION, JSON.stringify(followers));
 
     // API response once data is cached
-    response.status.json({
+    response.json({
       cacheStatus: 'Success!',
       user: userData.display_name,
       followers: followers,
