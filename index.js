@@ -1,6 +1,7 @@
 /* eslint-disable */
 require("dotenv").config(); // Safeguarding private keys in .env file
 const express = require("express"); // Web server
+const cors = require('cors');
 const path = require("path"); // Allows easy modifications to path
 const axios = require("axios"); // HTTP requests
 const Redis = require("redis"); // In-memory caching db
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // Redis client used to quickly cache using RAM
 let redisClient;

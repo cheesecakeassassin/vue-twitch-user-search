@@ -1,40 +1,51 @@
+<template>
+  <div class="w-screen h-screen overflow-hidden">
+    <div class="max-w-screen-lg mx-auto bg-neutral-800 rounded-lg mt-10 p-10 font-['Inter']">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold">Twitch User Search</h1>
+        <p class="mt-2">
+          Find the most important stats about your favorite creator using this
+          tool.
+        </p>
+      </div>
+
+      <div class="flex mt-5">
+        <UserSearch class="mx-auto" />
+      </div>
+
+      <div class="text-center mt-5">
+        Created by
+        <a
+          class="text-orange-500"
+          href="https://github.com/cheesecakeassassin"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          cheesecakeassassin 🎅
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import UserSearch from "@/components/UserSearch.vue";
 </script>
 
-<template>
-  <header>
-    <h1 class="title">Twitch User Search</h1>
-  </header>
-  <UserSearch />
-  <footer>
-    <p>
-      Created by
-      <a
-        href="https://github.com/cheesecakeassassin"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        cheesecakeassassin 🎅
-      </a>
-    </p>
-  </footer>
-</template>
-
 <style>
 @import "@/assets/base.css";
-
+/* 
 p {
   text-align: center;
-}
+} */
 
-a {
+/* a {
   text-decoration: none;
   color: rgb(255, 111, 89);
   transition: 0.4s;
-}
+} */
 
-@media (hover: hover) {
+/* @media (hover: hover) {
   a:hover {
     background-color: rgba(255, 111, 89, 0.2);
   }
@@ -44,5 +55,5 @@ a {
   font-size: 54px;
   text-align: center;
   margin-top: 50px;
-}
+} */
 </style>

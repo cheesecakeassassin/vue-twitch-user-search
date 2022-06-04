@@ -1,3 +1,50 @@
+<template>
+  <form class="" @submit="handleSubmit">
+    <div class="flex h-10">
+      <input
+        class="w-96 bg-neutral-700 px-4 rounded-md outline-0"
+        type="text"
+        name="name"
+        :value="formInput"
+        @change="
+          (event) => {
+            formInput = event.target.value;
+          }
+        "
+        placeholder="Enter your favorite Twitch channel..."
+        autoComplete="off"
+        pattern="^[a-zA-Z0-9_]{4,25}$"
+      />
+      <button
+        type="submit"
+        class="rounded-md px-4 border hover:bg-sky-800 ml-1"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="flex flex-column mt-4" v-if="hasSearched">
+      <div
+        class="flex grow justify-between p-3 border border-neutral-300 rounded-md"
+      >
+        <div>
+          Twitch channel:
+          <a
+            class="text-orange-500"
+            :href="twitchChannel + user"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {{ user }}
+          </a>
+        </div>
+        <div>
+          Follower count: <span class="text-sky-400">{{ followers.toLocaleString() }}</span>
+        </div>
+      </div>
+    </div>
+  </form>
+</template>
+
 <script>
 import axios from "axios"; // Used to make HTTP requests
 
@@ -8,9 +55,9 @@ export default {
     return {
       hasSearched: false,
       formInput: "",
-      user: "", // Placeholder while I configure backend
-      followers: 0, // Placeholder while I configure backend
-      twitchChannel: `https://www.twitch.tv/${this.user}`,
+      user: "",
+      followers: 0,
+      twitchChannel: "https://www.twitch.tv/",
     };
   },
 
@@ -33,54 +80,20 @@ export default {
         let username = event.target.name.value;
 
         // Makes an API call to the ExpressJS server
-        axios.get(`/users/${username}`).then((res) => {
-          this.user = res.data.user;
-          this.followers = res.data.followers;
-        });
+        axios
+          .get(`http://localhost:3001/users/${username}`)
+          .then((response) => {
+            this.user = response.data.user;
+            this.followers = response.data.followers;
+          });
       }
     },
   },
 };
-
 </script>
 
-<template>
-  <section>
-    <form id="user-search" @submit="handleSubmit">
-      <div>
-        <input
-          type="text"
-          name="name"
-          :value="formInput"
-          @change="
-            (e) => {
-              formInput = e.target.value;
-            }
-          "
-          placeholder="Enter your favorite Twitch channel..."
-          autoComplete="off"
-          pattern="^[a-zA-Z0-9_]{4,25}$"
-        />
-      </div>
-      <button type="submit" class="submit w-button">Submit</button>
-      <hr />
-      <div class="results" v-if="hasSearched">
-        <p class="channel">
-          Twitch channel:
-          <a :href="twitchChannel" target="_blank" rel="noreferrer noopener">
-            {{ user }}
-          </a>
-        </p>
-        <p class="followers">
-          Follower count: <span>{{ followers.toLocaleString() }}</span>
-        </p>
-      </div>
-    </form>
-  </section>
-</template>
-
 <style>
-a {
+/* a {
   text-decoration: none;
   color: rgb(255, 111, 89);
 }
@@ -309,4 +322,5 @@ hr {
     margin-top: 40px;
   }
 }
+*/
 </style>

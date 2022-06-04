@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* color palette from <https://github.com/vuejs/theme> */
+/* color palette from <https://github.com/vuejs/theme>
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -26,7 +26,7 @@
 }
 
 /* semantic color variables for this project */
-:root {
+/* :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -61,12 +61,11 @@
   margin: 0;
   position: relative;
   font-weight: normal;
-}
+} */ 
 
-body {
+/* body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, sans-serif;
@@ -76,4 +75,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: rgb(232, 230, 227);
   background-color: rgb(14, 16, 23);
-}
+} */
